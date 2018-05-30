@@ -13,8 +13,8 @@ spins = 1000
 # bet = raw_input('Bet on a number (i.e. 7, 11, 33) or a color (i.e. "red", "black", or "green"): ')
 # bankroll_start = raw_input('How much cash do you want to bring to the casino? $')
 
-# Sets the bet - currently set to bet on red
-bet = "red"
+# Sets the bet - currently set to bet on black
+bet = "black"
 # Sets the starting bankroll
 bankroll_start = 500
 # Initializes running bankroll
@@ -136,7 +136,7 @@ def spin():
 		spin_data.append("%s (%s)" % (num, board[str(num)]))
 		spin_data.append(status)
 		spin_data.append("$%s"%'{:,}'.format(bankroll))
-		spin_data.append("$%s"%bet_amount)
+		spin_data.append("$%s"%'{:,}'.format(bet_amount))
 		# Adds individual data to master list
 		data.append(spin_data)
 def summary():
