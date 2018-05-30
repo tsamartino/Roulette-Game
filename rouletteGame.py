@@ -133,7 +133,8 @@ def spin():
 
 		# Appends data points for each individual spin
 		spin_data.append(bet)
-		spin_data.append("%s (%s)" % (num, board[str(num)]))
+		spin_data.append(num)
+		spin_data.append(board[str(num)])
 		spin_data.append(status)
 		spin_data.append("$%s"%'{:,}'.format(bankroll))
 		spin_data.append("$%s"%'{:,}'.format(bet_amount))
@@ -152,7 +153,7 @@ def summary():
 	print("Biggest bet: $%s" % '{:,}'.format(bet_amount_max))
 	print("Highest bankroll: $%s" % '{:,}'.format(bankroll_max))
 spin()
-df = pd.DataFrame(data,columns=['Bet Amount','Bet', 'Landed On', 'Status', 'Bankroll', 'Next Bet'])
+df = pd.DataFrame(data,columns=['Bet Amount','Bet', 'Landed On', 'Color', 'Status', 'Bankroll', 'Next Bet'])
 print df
 summary()
 # for key in results:
