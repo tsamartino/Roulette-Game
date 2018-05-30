@@ -9,25 +9,37 @@ spins = 1000
 
 # Use an int to bet on individual numbers ("00" is -1)
 # Use a str to bet on colors (i.e. "red", "black", or "green")
+
 # bet = raw_input('Bet on a number (i.e. 7, 11, 33) or a color (i.e. "red", "black", or "green"): ')
 # bankroll_start = raw_input('How much cash do you want to bring to the casino? $')
+
+# Sets the bet - currently set to bet on red
 bet = "red"
+# Sets the starting bankroll
 bankroll_start = 500
+# Initializes running bankroll
 bankroll = bankroll_start
+# Initializes the max amount the bankroll reaches throughout the simulation - for reporting at end
 bankroll_max = bankroll
-# Amount to start betting on
+
 # bet_amount_start = raw_input('What do you want the minimum bet to be set to? $')
+# Specifies initial bet amount
 bet_amount_start = 25
 bet_amount = bet_amount_start
+# Specifies the max bet allowed
 bet_amount_max = 1000
 
+# Initialize counters
 counter = 0
 wins = 0
 losses = 0
-board = {}
+
 result = {}
 history = {}
+
+# Sets up roulette board
 # "-1" is "00"
+board = {}
 for i in range(-1,37):
 	if i == -1:
 		board["00"] = "green"
@@ -38,6 +50,8 @@ for i in range(-1,37):
 	else:
 		board[str(i)] = "black"
 	result[i] = counter
+
+# Empty list to hold data to be displayed in DataTable
 data = []
 
 def spin():
@@ -49,8 +63,10 @@ def spin():
 	global bankroll_max
 	global bet_amount
 	global bet_amount_max
+	# Empty string to hold win/lose status
 	status = ""
 	for spin in range(spins):
+		# Empty list to hold data for each individual spin
 		spin_data = []
 		spin_data.append("$%s"%'{:,}'.format(bet_amount))
 		counter += 1
