@@ -76,22 +76,22 @@ def spin():
 		if num == -1:
 			num = "00"
 		if bankroll == 0:
-			print
-			print("Game over :( at spin %s" % spin)
-			print
+			# print
+			# print("Game over :( at spin %s" % spin)
+			# print
 			break
 		#Checks if there is enough cash to bet
 		if bet_amount > bankroll:
 			#Does the most we can bet
 			bet_amount = bankroll
-			print("   -- Can't bet that much, new bet set to $%s - All of your bankroll!" % '{:,}'.format(bet_amount))
-			wait = raw_input("   -- Press $ to cash out or enter to continue. ")
-			if wait == "$":
-				print
-				print("Congrats. You won $%s!" % '{:,}'.format(bankroll))
-				print
-				break
-			print
+			# print("   -- Can't bet that much, new bet set to $%s - All of your bankroll!" % '{:,}'.format(bet_amount))
+			# wait = raw_input("   -- Press $ to cash out or enter to continue. ")
+			# if wait == "$":
+			# 	print
+			# 	print("Congrats. You won $%s!" % '{:,}'.format(bankroll))
+			# 	print
+			# 	break
+			# print
 
 		# print("Spin %s: %s - Bet: $%s on %s from a bankroll of $%s" % (counter, num, '{:,}'.format(bet_amount), bet, '{:,}'.format(bankroll),))
 
