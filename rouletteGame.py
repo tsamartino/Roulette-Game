@@ -162,7 +162,8 @@ def summary():
 spin()
 df = pd.DataFrame(data,columns=['Bet Amount','Bet', 'Landed On', 'Color', 'Status', 'Bankroll', 'Next Bet'])
 print df
-print result
+for key in result:
+	print(key, result[key])
 summary()
 # for key in results:
 # 	print("%s: %s" % (key, str(results[key])))
