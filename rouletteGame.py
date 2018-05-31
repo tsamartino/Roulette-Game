@@ -72,7 +72,7 @@ def spin():
 	for spin in range(spins):
 		# Empty list to hold data for each individual spin
 		spin_data = []
-		spin_data.append("$%s"%'{:,}'.format(bet_amount))
+		
 		counter += 1
 		history[counter] = bet_amount
 		num = random.randint(-1, 36)
@@ -90,6 +90,7 @@ def spin():
 		if bet_amount > bankroll:
 			#Does the most we can bet
 			bet_amount = bankroll
+			print("Bet amount: $%s / Bankroll: $%s" % (str(bet_amount), str(bankroll)))
 			# print("   -- Can't bet that much, new bet set to $%s - All of your bankroll!" % '{:,}'.format(bet_amount))
 			# wait = raw_input("   -- Press $ to cash out or enter to continue. ")
 			# if wait == "$":
@@ -98,7 +99,7 @@ def spin():
 			# 	print
 			# 	break
 			# print
-
+		spin_data.append("$%s"%'{:,}'.format(bet_amount))
 		# print("Spin %s: %s - Bet: $%s on %s from a bankroll of $%s" % (counter, num, '{:,}'.format(bet_amount), bet, '{:,}'.format(bankroll),))
 
 		if isinstance(bet, str):
@@ -131,6 +132,8 @@ def spin():
 		# print("%s SPIN %s Bankroll: $%s Bet: $%s on %s - landed on %s" % (status, counter, '{:,}'.format(bankroll), '{:,}'.format(bet_amount), bet, num))
 		if bet_amount > bet_amount_max:
 			bet_amount = bet_amount_max
+		if bet_amount > bankroll:
+			bet_amount = bankroll
 		if bankroll > bankroll_max:
 			bankroll_max = bankroll
 
