@@ -34,22 +34,26 @@ counter = 0
 wins = 0
 losses = 0
 
+# Empty dictionary to hold count of how many times an individual number was landed on
 result = {}
 history = {}
 
-# Sets up roulette board
+# Sets up roulette board and result dictionary to summarize number of times individual number hit
 # "-1" is "00"
 board = {}
 for i in range(-1,37):
 	if i == -1:
 		board["00"] = "green"
+		result["00"] = counter
 	elif i == 0:
 		board["0"] = "green"
+		result["0"] = counter
 	elif i % 2 == 0:
 		board[str(i)] = "red"
+		result[str(i)] = counter
 	else:
 		board[str(i)] = "black"
-	result[i] = counter
+		result[str(i)] = counter
 
 # Empty list to hold data to be displayed in DataTable
 data = []
@@ -72,9 +76,11 @@ def spin():
 		counter += 1
 		history[counter] = bet_amount
 		num = random.randint(-1, 36)
-		result[num] += 1
+
 		if num == -1:
 			num = "00"
+		# Increases the summary count for each individual number
+		result[str(num)] += 1
 		if bankroll == 0:
 			# print
 			# print("Game over :( at spin %s" % spin)
@@ -140,6 +146,7 @@ def spin():
 		spin_data.append("$%s"%'{:,}'.format(bet_amount))
 		# Adds individual data to master list
 		data.append(spin_data)
+
 def summary():
 	# Summary
 	print
@@ -155,6 +162,7 @@ def summary():
 spin()
 df = pd.DataFrame(data,columns=['Bet Amount','Bet', 'Landed On', 'Color', 'Status', 'Bankroll', 'Next Bet'])
 print df
+print result
 summary()
 # for key in results:
 # 	print("%s: %s" % (key, str(results[key])))
