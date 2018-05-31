@@ -15,7 +15,7 @@ spins = 100
 # Sets the bet
 # Use an int to bet on individual numbers ("00" is -1)
 # Use a str to bet on colors (i.e. "red", "black", or "green")
-bet = 5
+bet = "red"
 # Sets the starting bankroll
 bankroll_start = 500
 # Initializes running bankroll
@@ -91,7 +91,6 @@ def spin():
 		if bet_amount > bankroll:
 			#Does the most we can bet
 			bet_amount = bankroll
-			print("Bet amount: $%s / Bankroll: $%s" % (str(bet_amount), str(bankroll)))
 			# print("   -- Can't bet that much, new bet set to $%s - All of your bankroll!" % '{:,}'.format(bet_amount))
 			# wait = raw_input("   -- Press $ to cash out or enter to continue. ")
 			# if wait == "$":
@@ -107,12 +106,14 @@ def spin():
 			# Red/black bets
 			if board[str(num)] == bet:
 				wins += 1
-				bankroll += (bet_amount * 2)
+				winnings = (bet_amount * 2)
+				bankroll += winnings
 				bet_amount = bet_amount_start
 				status = "**WON**"
 			else:
 				losses += 1
-				bankroll += -bet_amount
+				winnings = -bet_amount
+				bankroll += winnings
 				bet_amount = bet_amount * 2
 				status = "-Lost-"
 		elif isinstance(bet, int):
@@ -120,12 +121,14 @@ def spin():
 			# Checks for win or lose
 			if num == bet:
 				wins += 1
-				bankroll += bet_amount * 35
+				winnings = bet_amount * 35
+				bankroll += winnings
 				bet_amount = bet_amount_start
 				status = "**WON**"
 			else:
 				losses += 1
-				bankroll += -bet_amount
+				winnings = -bet_amount
+				bankroll += winnings
 				bet_amount = bet_amount * 2
 				status = "-Lost-"
 
@@ -146,6 +149,10 @@ def spin():
 		spin_data.append(num)
 		spin_data.append(board[str(num)])
 		spin_data.append(status)
+		if winnings < 0:
+			spin_data.append("-$%s"%'{:,}'.format(abs(winnings)))
+		else:
+			spin_data.append("$%s"%'{:,}'.format(winnings))
 		spin_data.append("$%s"%'{:,}'.format(bankroll))
 		spin_data.append("$%s"%'{:,}'.format(bet_amount))
 		# Adds individual data to master list
@@ -164,7 +171,7 @@ def summary():
 	print("Biggest bet: $%s" % '{:,}'.format(bet_amount_max))
 	print("Highest bankroll: $%s" % '{:,}'.format(bankroll_max))
 spin()
-df = pd.DataFrame(data,columns=['Bet Amount','Bet', 'Landed On', 'Color', 'Status', 'Bankroll', 'Next Bet'])
+df = pd.DataFrame(data,columns=['Bet Amount','Bet', 'Landed On', 'Color', 'Status', 'Winnings', 'Bankroll', 'Next Bet'])
 print df
 summary()
 # for key in results:
