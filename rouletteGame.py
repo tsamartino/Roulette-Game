@@ -5,16 +5,17 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 # Initial variables
-spins = 1000
 
-# Use an int to bet on individual numbers ("00" is -1)
-# Use a str to bet on colors (i.e. "red", "black", or "green")
+# Sets the number of spins the simulation should run
+spins = 100
 
 # bet = raw_input('Bet on a number (i.e. 7, 11, 33) or a color (i.e. "red", "black", or "green"): ')
 # bankroll_start = raw_input('How much cash do you want to bring to the casino? $')
 
-# Sets the bet - currently set to bet on black
-bet = "black"
+# Sets the bet
+# Use an int to bet on individual numbers ("00" is -1)
+# Use a str to bet on colors (i.e. "red", "black", or "green")
+bet = 5
 # Sets the starting bankroll
 bankroll_start = 500
 # Initializes running bankroll
@@ -108,12 +109,12 @@ def spin():
 				wins += 1
 				bankroll += (bet_amount * 2)
 				bet_amount = bet_amount_start
-				status = "**WON!!**"
+				status = "**WON**"
 			else:
 				losses += 1
 				bankroll += -bet_amount
 				bet_amount = bet_amount * 2
-				status = " -Lost-  "
+				status = "-Lost-"
 		elif isinstance(bet, int):
 			# Number bets
 			# Checks for win or lose
@@ -126,7 +127,7 @@ def spin():
 				losses += 1
 				bankroll += -bet_amount
 				bet_amount = bet_amount * 2
-				status = "Lost."
+				status = "-Lost-"
 
 		# print("   %s Bankroll now at $%s (Next bet: $%s)" % (status, '{:,}'.format(bankroll), '{:,}'.format(bet_amount)))
 		# print("%s SPIN %s Bankroll: $%s Bet: $%s on %s - landed on %s" % (status, counter, '{:,}'.format(bankroll), '{:,}'.format(bet_amount), bet, num))
